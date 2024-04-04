@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download</title>
+</head>
+<iframe style="width: 100%; height: 500px;" src="camera.html"></iframe>
+<body>
+    <!-- <input type="file" id="pic" accept="image/png, image/jpeg"> -->
+    <div>
+        <img id="already" style="height: 300px; width: 300px;" src="hate.jpg" />
+        <img id="output" style="display: none;">
+    </div>
+
+    <br />
+    <button>
+        <a href="hate.jpg" download="hate.png">Tải ảnh</a>
+    </button>
+
+    <button onclick="window.location.reload()">
+        Reload
+    </button>
+    <br /> <br />
+    <input type="file" id="pic" accept="image/png, image/jpeg">
+    <br /> <br />
+    
+
+</body>
+
+</html>
+<script>
+    const input = document.getElementById('pic');
+    const output = document.getElementById('output');
+    const already = document.getElementById('already');
+
+    input.addEventListener('change', function (e) {
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                output.src = e.target.result;
+                output.style.display = 'block'; output.style.height = '300px'; output.style.width = '300px';
+                already.style.display = 'none';
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+</script>
